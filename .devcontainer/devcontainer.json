@@ -10,7 +10,7 @@
     "containerUser": "dev",
 
     "mounts": [
-        "source=C:/Users/lazark/Desktop/projects/docker,target=/workspace,type=bind"
+        "source=C:/Users/lazark/Desktop/projects/docker/docker-dev-ubuntu,target=/workspace,type=bind"
     ],
     // important for shell
     "containerEnv": {
