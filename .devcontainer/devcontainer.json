@@ -1,0 +1,19 @@
+{
+    "build": {
+        "target": "dev-container",
+		"dockerfile": "../Dockerfile",
+		"context": ".."
+	},
+
+    "remoteUser": "dev",
+
+    "containerUser": "dev",
+
+    "mounts": [
+        "source=C:/Users/lazark/Desktop/projects/docker,target=/workspace,type=bind"
+    ],
+    // important for shell
+    "containerEnv": {
+        "SHELL":"/bin/bash"
+    }
+}
