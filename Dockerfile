@@ -5,7 +5,7 @@ RUN apt-get update -y
 RUN apt-get install gcc -y
 RUN apt-get install g++ -y
 RUN apt-get install build-essential -y
-# RUN apt-get install ninja-build -y
+RUN apt-get install ninja-build -y
 
 # install cmake
 RUN \ 
@@ -17,13 +17,16 @@ RUN \
 ARG SYSTEMC_VERSION=2.3.3
 
 ADD https://www.accellera.org/images/downloads/standards/systemc/systemc-${SYSTEMC_VERSION}.tar.gz ./
+
 RUN \
     # mkdir -p systemc_build && \
     tar -xzf systemc-${SYSTEMC_VERSION}.tar.gz && \
     cmake \
-            # -G Ninja
+            -G Ninja \
             -S systemc-${SYSTEMC_VERSION} \ 
             -B systemc_build \
+            -D CMAKE_CXX_STANDARD=17 \
+            -D CMAKE_BUILD_TYPE=RelWithDebInfo \
             -D CMAKE_INSTALL_PREFIX=/usr/local/lib/cmake/SystemC && \
     cmake --build systemc_build -j $(nproc) && \
     cmake --install systemc_build
@@ -44,6 +47,7 @@ RUN \
 
 USER $USERNAME
 
+# ENV LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 
 # entrypoint
 ENTRYPOINT ["/bin/bash"]

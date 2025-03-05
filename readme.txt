@@ -25,4 +25,6 @@
 
 11 ctrl+shift+p: Run Task then choose task from tasks.json
 
+12 install extensions c++ and cmake , create CMakeLists.txt inside sc folder, it will automatically link build folder and build button will be created.
+
 ctrl+shift+b
